@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fixing Up - Menú de Cliente</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="imges/logo.png" alt="Fixing Up Logo" class="logo-img" />
+        <h1>Bienvenido a Fixing Up</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="menu_cliente.html">Inicio</a></li>
+          <li><a href="perfil_cliente.html">Mi Perfil</a></li>
+          <li><a href="#" onclick="logoutFunction()">Cerrar Sesión</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="services">
+      <h3>Nuestros Servicios</h3>
+
+      <!-- Tarjeta de servicio para Plomería -->
+      <div class="service-card">
+        <img
+          src="imges/plomeria-icon.PNG"
+          alt="Plomería"
+          class="fotoservicio"
+        />
+        <h4>Plomería</h4>
+        <p>Servicios de plomería rápida y confiable para tu hogar.</p>
+        <button onclick="window.location.href='perfiles.html?service=plomeria'">
+          Ver Profesionales
+        </button>
+      </div>
+
+      <!-- Tarjeta de servicio para Electricidad -->
+      <div class="service-card">
+        <img
+          src="imges/electricidad-icon.PNG"
+          alt="Electricidad"
+          class="fotoservicio"
+        />
+        <h4>Electricidad</h4>
+        <p>Instalaciones y reparaciones eléctricas seguras.</p>
+        <button
+          onclick="window.location.href='perfiles.html?service=electricidad'"
+        >
+          Ver Profesionales
+        </button>
+      </div>
+
+      <!-- Tarjeta de servicio para Carpintería -->
+      <div class="service-card">
+        <img
+          src="imges/carpinteria-icon.PNG"
+          alt="Carpintería"
+          class="fotoservicio"
+        />
+        <h4>Carpintería</h4>
+        <p>Trabajo de carpintería a medida para tus necesidades.</p>
+        <button
+          onclick="window.location.href='perfiles.html?service=carpinteria'"
+        >
+          Ver Profesionales
+        </button>
+      </div>
+
+      <!-- Tarjeta de servicio para Pintura -->
+      <div class="service-card">
+        <img src="imges/pintor.PNG" alt="Pintura" class="fotoservicio" />
+        <h4>Pintura</h4>
+        <p>Servicios de pintura profesional para el hogar y negocios.</p>
+        <button onclick="window.location.href='perfiles.html?service=pintura'">
+          Ver Profesionales
+        </button>
+      </div>
+
+      <!-- Tarjeta de servicio para Albañilería -->
+      <div class="service-card">
+        <img
+          src="imges/Albañilería.PNG"
+          alt="Albañilería"
+          class="fotoservicio"
+        />
+        <h4>Albañilería</h4>
+        <p>Trabajo de albañilería para construcción y remodelación.</p>
+        <button
+          onclick="window.location.href='perfiles.html?service=albanileria'"
+        >
+          Ver Profesionales
+        </button>
+      </div>
+
+      <!-- Tarjeta de servicio para Jardinería -->
+      <div class="service-card">
+        <img src="imges/jardineria.PNG" alt="Jardinería" class="fotoservicio" />
+        <h4>Jardinería</h4>
+        <p>Servicios de jardinería y mantenimiento de áreas verdes.</p>
+        <button
+          onclick="window.location.href='perfiles.html?service=jardineria'"
+        >
+          Ver Profesionales
+        </button>
+      </div>
+    </section>
+
+    <footer class="custom-footer">
+      <p>© 2023 Fixing Up. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Script de autenticación -->
+    <script src="js/auth.js"></script>
+  </body>
+</html>

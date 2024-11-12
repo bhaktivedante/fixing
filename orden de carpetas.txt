@@ -1,0 +1,46 @@
+project-root/
+ frontend/
+    js/
+      admin/
+     userCrud.js     Funciones CRUD para gestión de usuarios en el panel de administración
+     auth.js         Funciones de autenticación (login, logout)
+     api.js          Funciones para comunicación con el backend
+     register.js     Funciones para el registro de usuarios
+     profiles.js     Funciones para mostrar perfiles de profesionales
+    styles/
+    styles.css       Estilos principales para la interfaz general
+   admin.css         Estilos específicos para la página de administración
+   index.html        Página de inicio de la aplicación
+   login.html        Página de inicio de sesión
+   register.html     Página de registro de usuarios
+   perfiles.html     Página de perfiles de profesionales
+   admin.html        Panel de administración para gestión de usuarios y servicios
+
+       src/          Código del backend (servidor y lógica de negocio)
+   config/
+   config.js         Configuración general (port, rutas de base de datos, etc.)
+   database.js       Configuración de la conexión a la base de datos SQLite
+   controllers/
+   userController.js           Controlador para manejo de usuarios (registro, login, etc.)
+   professionalController.js   Controlador para manejo de profesionales
+   serviceController.js        Controlador para manejo de servicios
+   models/
+   userModel.js                Modelo de usuario (interacción con la tabla usuarios en la BD)
+   professionalModel.js       Modelo de profesional (interacción con la tabla profesionales)
+   serviceModel.js             Modelo de servicio (interacción con la tabla servicios)
+   routes/
+   usuarios.js                 Rutas para operaciones de usuarios
+   profesionales.js            Rutas para operaciones de profesionales
+   servicios.js                Rutas para operaciones de servicios
+   services/
+   userService.js              Lógica de negocio para usuarios
+   professionalService.js      Lógica de negocio para profesionales
+   serviceService.js           Lógica de negocio para servicios
+   app.js                          Configuración y registro de middlewares, enrutamiento principal
+   server.js                       Punto de entrada para el servidor
+│
+ database/
+fixingup.db                     Archivo de base de datos SQLite
+
+.env                                Variables de entorno (configuración sensible)
+package.json                        Dependencias y scripts del proyecto

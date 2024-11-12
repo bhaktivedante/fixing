@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel de Administración - Fixing Up</title>
+    <link rel="stylesheet" href="styles/admin.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Panel de Administración</h1>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <button onclick="logoutFunction()">Cerrar Sesión</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="crud-section">
+        <h2>Administración de Usuarios</h2>
+        <button onclick="fetchUsers()">Ver Usuarios</button>
+        <button onclick="showCreateUserForm()">Crear Usuario</button>
+        <div id="user-table-container"></div>
+      </section>
+    </main>
+
+    <script src="js/admin/userCrud.js"></script>
+    <script src="js/auth.js"></script>
+  </body>
+</html>
