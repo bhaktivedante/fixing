@@ -50,6 +50,12 @@ module.exports = {
       }
     );
   },
+  deleteUser: (userId, callback) => {
+    const sql = `DELETE FROM usuarios WHERE id_usuario = ?`;
+    db.run(sql, [userId], (err) => {
+      callback(err);
+    });
+  },
 
   // Buscar un usuario por email
   findUserByEmail: (email, callback) => {

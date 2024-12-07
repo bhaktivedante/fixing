@@ -7,6 +7,11 @@ const userController = require("../controllers/userController");
 // Ruta para registrar un nuevo usuario
 router.post("/registrar", userController.registerUser);
 
+router.delete(
+  "/:id", // Parámetro dinámico para el ID del usuario
+  userController.deleteUser // Llama al controlador de eliminación
+);
+
 // Ruta para iniciar sesión del usuario
 router.post("/login", userController.loginUser);
 

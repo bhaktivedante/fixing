@@ -1,5 +1,3 @@
-// src/routes/profesionales.js
-
 const express = require("express");
 const router = express.Router();
 const professionalController = require("../controllers/professionalController");

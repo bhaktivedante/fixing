@@ -6,14 +6,14 @@ const db = require("../config/database");
 const createProfessionalTable = () => {
   db.run(
     `
-        CREATE TABLE IF NOT EXISTS profesionales (
-            id_profesional INTEGER PRIMARY KEY AUTOINCREMENT,
-            id_usuario INTEGER NOT NULL,
-            especialidad TEXT NOT NULL,
-            tarifa_hora REAL NOT NULL,
-            disponibilidad TEXT NOT NULL,
-            FOREIGN KEY(id_usuario) REFERENCES usuarios(id_usuario)
-        )
+    CREATE TABLE IF NOT EXISTS profesionales (
+        id_profesional INTEGER PRIMARY KEY AUTOINCREMENT,
+        id_usuario INTEGER NOT NULL,
+        especialidad TEXT NOT NULL,
+        tarifa_hora REAL NOT NULL,
+        disponibilidad TEXT NOT NULL,
+        FOREIGN KEY(id_usuario) REFERENCES usuarios(id_usuario)
+    )
     `,
     (err) => {
       if (err) {
@@ -32,7 +32,12 @@ createProfessionalTable();
 module.exports = {
   // Obtener todos los profesionales
   getAllProfessionals: (callback) => {
-    db.all("SELECT * FROM profesionales", [], (err, rows) => {
+    const sql = `
+      SELECT profesionales.*, usuarios.nombre, usuarios.email 
+      FROM profesionales 
+      INNER JOIN usuarios ON profesionales.id_usuario = usuarios.id_usuario
+    `;
+    db.all(sql, [], (err, rows) => {
       callback(err, rows);
     });
   },

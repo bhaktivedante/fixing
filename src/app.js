@@ -16,9 +16,13 @@ app.use(express.static(path.join(__dirname, "../public")));
 
 // Importar rutas de la API
 const userRoutes = require("./routes/usuarios");
+const professionalRoutes = require("./routes/profesionales");
 
 // Enlazar rutas de la API con el prefijo /api/usuarios
 app.use("/api/usuarios", userRoutes);
+
+// Enlazar rutas de la API con el prefijo /api/profesionales
+app.use("/api/profesionales", professionalRoutes);
 
 // Middleware de manejo de errores para rutas no encontradas
 app.use((req, res, next) => {

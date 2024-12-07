@@ -1,0 +1,96 @@
+/* Contenedor principal */
+.register-page {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.register-page img.logo-img {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.register-page h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.register-page form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Campos del formulario */
+.register-page .form-group {
+  width: 100%;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.register-page .form-group label {
+  display: block;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.register-page .form-group input,
+.register-page .form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.register-page .error-message {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+/* Botón de registro */
+.register-page button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 15px;
+}
+
+.register-page button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Términos y Condiciones */
+.register-page .form-group input[type="checkbox"] {
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.register-page .form-group label[for="terms"] {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: #555;
+  cursor: pointer;
+}
+
+.register-page .form-group label[for="terms"] a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-page .form-group label[for="terms"] a:hover {
+  text-decoration: underline;
+}

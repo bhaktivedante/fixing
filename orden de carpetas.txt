@@ -1,3 +1,9 @@
+Inicia sesión con las credenciales:
+
+Email: admin@admin.com
+Contraseña: admin123
+
+
 project-root/
  frontend/
     js/

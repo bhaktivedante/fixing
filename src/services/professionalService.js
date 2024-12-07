@@ -27,3 +27,17 @@ exports.registerProfessional = (professionalData) => {
     });
   });
 };
+
+const profesionalModel = require("../models/profesionalModel");
+
+exports.getAllProfessionals = () => {
+  return new Promise((resolve, reject) => {
+    profesionalModel.getProfessionals((err, professionals) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(professionals);
+      }
+    });
+  });
+};

@@ -447,3 +447,69 @@ button {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
+
+/* Sección "About Us" */
+.about-us {
+  background-color: #f2f2f2; /* Fondo gris claro para destacar la sección */
+  padding: 50px 20px;
+  text-align: center;
+  border-top: 3px solid #3b5998; /* Línea superior con color de marca */
+}
+
+.about-us h3 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #333; /* Título en gris oscuro */
+  font-family: "Arial", sans-serif; /* Fuente acorde al diseño general */
+}
+
+.about-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.about-img {
+  max-width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera para destacar */
+  transition: transform 0.3s; /* Animación suave al pasar el mouse */
+}
+
+.about-img:hover {
+  transform: scale(1.05); /* Ampliación ligera en hover */
+}
+
+.about-text {
+  max-width: 600px;
+  text-align: left;
+  color: #555; /* Texto en gris medio */
+  font-family: "Verdana", sans-serif;
+  line-height: 1.8;
+}
+
+.about-text p {
+  margin-bottom: 15px;
+  font-size: 1rem; /* Tamaño de fuente cómodo para lectura */
+}
+
+.about-text button {
+  background-color: #3b5998; /* Azul para botones */
+  color: #fff; /* Texto blanco */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: "Arial", sans-serif;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.about-text button:hover {
+  background-color: #0056b3; /* Azul más oscuro en hover */
+  transform: translateY(-2px); /* Ligero movimiento hacia arriba */
+}

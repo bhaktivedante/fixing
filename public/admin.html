@@ -4,25 +4,111 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panel de Administración - Fixing Up</title>
+    <link rel="stylesheet" href="styles/styles.css" />
     <link rel="stylesheet" href="styles/admin.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
   </head>
   <body>
     <header>
-      <h1>Panel de Administración</h1>
+      <div class="logo">
+        <img src="imges/logo.png" alt="Fixing Up Logo" class="logo-img" />
+        <h1>Fixing Up - Panel de Administración</h1>
+      </div>
       <nav>
-        <a href="index.html">Inicio</a>
-        <button onclick="logoutFunction()">Cerrar Sesión</button>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><button onclick="logoutFunction()">Cerrar Sesión</button></li>
+        </ul>
       </nav>
     </header>
 
     <main>
       <section class="crud-section">
         <h2>Administración de Usuarios</h2>
-        <button onclick="fetchUsers()">Ver Usuarios</button>
-        <button onclick="showCreateUserForm()">Crear Usuario</button>
-        <div id="user-table-container"></div>
+        <div class="crud-buttons">
+          <button class="crud-button" onclick="fetchUsers()">
+            <i class="fas fa-list"></i> Listar Usuarios
+          </button>
+          <button class="crud-button" onclick="showCreateUserForm()">
+            <i class="fas fa-user-plus"></i> Crear Usuario
+          </button>
+        </div>
+        <div id="user-table-container" class="table-container"></div>
+      </section>
+
+      <!-- CRUD de Profesionales -->
+      <section class="crud-section">
+        <h2>Administración de Profesionales</h2>
+        <div class="crud-buttons">
+          <button class="crud-button" onclick="fetchProfessionals()">
+            <i class="fas fa-list"></i> Listar Profesionales
+          </button>
+          <button class="crud-button" onclick="showCreateProfessionalForm()">
+            <i class="fas fa-user-plus"></i> Crear Profesional
+          </button>
+        </div>
+        <div id="professional-table-container" class="table-container"></div>
+      </section>
+
+      <!-- CRUD de Servicios -->
+      <section class="crud-section">
+        <h2>Administración de Servicios</h2>
+        <div class="crud-buttons">
+          <button class="crud-button" onclick="fetchServices()">
+            <i class="fas fa-list"></i> Listar Servicios
+          </button>
+          <button class="crud-button" onclick="showCreateServiceForm()">
+            <i class="fas fa-plus"></i> Crear Servicio
+          </button>
+        </div>
+        <div id="service-table-container" class="table-container"></div>
       </section>
     </main>
+
+    <footer class="custom-footer">
+      <div class="footer-content">
+        <div class="footer-links-left">
+          <a href="#">Aviso Legal</a>
+          <a href="#">Política de Privacidad</a>
+          <a href="#">Política de Cookies</a>
+          <a href="#">Política de Calidad</a>
+        </div>
+        <div class="footer-center">
+          <img src="imges/logo.png" alt="Fixing Up Logo" class="footer-logo" />
+          <div class="social-icons">
+            <a href="https://facebook.com" target="_blank" class="social-icon"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="https://instagram.com" target="_blank" class="social-icon"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://youtube.com" target="_blank" class="social-icon"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a href="https://pinterest.com" target="_blank" class="social-icon"
+              ><i class="fab fa-pinterest"></i
+            ></a>
+            <a href="https://linkedin.com" target="_blank" class="social-icon"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+          </div>
+        </div>
+        <div class="footer-links-right">
+          <a href="#">Blog</a>
+          <a href="#">FAQs</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          Fixing Up | Calle Los Estudiantes 123, Ciudad Santiago, País Chile |
+          info@fixingup.com | +56 9 3550632 | © 2023 Fixing Up. Todos los
+          derechos reservados.
+        </p>
+      </div>
+    </footer>
 
     <script src="js/admin/userCrud.js"></script>
     <script src="js/auth.js"></script>

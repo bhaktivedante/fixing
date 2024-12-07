@@ -152,9 +152,23 @@ function updateUser(event, id) {
 
 // Función para eliminar un usuario
 function deleteUser(id) {
-  fetch(`http://localhost:3000/api/usuarios/${id}`, {
-    method: "DELETE",
-  })
-    .then(() => fetchUsers())
-    .catch((error) => console.error("Error al eliminar el usuario:", error));
+  if (confirm("¿Estás seguro de que deseas eliminar este usuario?")) {
+    fetch(`http://localhost:3000/api/usuarios/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`, // Token para autenticación
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("No se pudo eliminar el usuario");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        alert(data.message);
+        fetchUsers(); // Actualiza la tabla de usuarios
+      })
+      .catch((error) => console.error("Error al eliminar usuario:", error));
+  }
 }

@@ -3,117 +3,132 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fixing Up - Menú de Cliente</title>
-    <link rel="stylesheet" href="styles/styles.css" />
+    <title>Fixing Up - Dashboard Cliente</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles/menu_cliente.css" />
   </head>
   <body>
-    <header>
-      <div class="logo">
-        <img src="imges/logo.png" alt="Fixing Up Logo" class="logo-img" />
-        <h1>Bienvenido a Fixing Up</h1>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="menu_cliente.html">Inicio</a></li>
-          <li><a href="perfil_cliente.html">Mi Perfil</a></li>
-          <li><a href="#" onclick="logoutFunction()">Cerrar Sesión</a></li>
+    <div class="d-flex">
+      <!-- Sidebar -->
+      <nav class="bg-primary text-white p-3 vh-100 sidebar">
+        <h4 class="text-center mb-4">Fixing Up</h4>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-3">
+            <a href="#dashboard" class="nav-link text-white">
+              <i class="bi bi-house-door"></i> Inicio
+            </a>
+          </li>
+          <li class="nav-item mb-3">
+            <a href="#my-contracts" class="nav-link text-white">
+              <i class="bi bi-file-earmark-text"></i> Mis Contrataciones
+            </a>
+          </li>
+          <li class="nav-item mb-3">
+            <a href="#payments" class="nav-link text-white">
+              <i class="bi bi-wallet2"></i> Mis Pagos
+            </a>
+          </li>
+          <li class="nav-item mb-3">
+            <a href="#hire-professional" class="nav-link text-white">
+              <i class="bi bi-person-plus"></i> Contratar Profesional
+            </a>
+          </li>
+          <li class="nav-item mb-3">
+            <a href="#help-center" class="nav-link text-white">
+              <i class="bi bi-question-circle"></i> Centro de Ayuda
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link text-white" onclick="logoutFunction()">
+              <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+            </a>
+          </li>
         </ul>
       </nav>
-    </header>
 
-    <section class="services">
-      <h3>Nuestros Servicios</h3>
+      <!-- Main Content -->
+      <main class="flex-grow-1 p-4">
+        <!-- Inicio -->
+        <section id="dashboard" class="menu-section">
+          <h2>¡Bienvenido al Dashboard!</h2>
+          <p class="text-muted">Gestiona tus contrataciones, pagos y más.</p>
+        </section>
 
-      <!-- Tarjeta de servicio para Plomería -->
-      <div class="service-card">
-        <img
-          src="imges/plomeria-icon.PNG"
-          alt="Plomería"
-          class="fotoservicio"
-        />
-        <h4>Plomería</h4>
-        <p>Servicios de plomería rápida y confiable para tu hogar.</p>
-        <button onclick="window.location.href='perfiles.html?service=plomeria'">
-          Ver Profesionales
-        </button>
-      </div>
+        <!-- Sección Contratar Profesional -->
+        <section id="hire-professional" class="menu-section mt-5">
+          <h2>Contratar Profesional</h2>
+          <p>Elige entre los mejores profesionales para tus necesidades.</p>
+          <div class="row" id="professional-list">
+            <!-- Lista dinámica de profesionales -->
+          </div>
+        </section>
+      </main>
+    </div>
 
-      <!-- Tarjeta de servicio para Electricidad -->
-      <div class="service-card">
-        <img
-          src="imges/electricidad-icon.PNG"
-          alt="Electricidad"
-          class="fotoservicio"
-        />
-        <h4>Electricidad</h4>
-        <p>Instalaciones y reparaciones eléctricas seguras.</p>
-        <button
-          onclick="window.location.href='perfiles.html?service=electricidad'"
-        >
-          Ver Profesionales
-        </button>
-      </div>
-
-      <!-- Tarjeta de servicio para Carpintería -->
-      <div class="service-card">
-        <img
-          src="imges/carpinteria-icon.PNG"
-          alt="Carpintería"
-          class="fotoservicio"
-        />
-        <h4>Carpintería</h4>
-        <p>Trabajo de carpintería a medida para tus necesidades.</p>
-        <button
-          onclick="window.location.href='perfiles.html?service=carpinteria'"
-        >
-          Ver Profesionales
-        </button>
-      </div>
-
-      <!-- Tarjeta de servicio para Pintura -->
-      <div class="service-card">
-        <img src="imges/pintor.PNG" alt="Pintura" class="fotoservicio" />
-        <h4>Pintura</h4>
-        <p>Servicios de pintura profesional para el hogar y negocios.</p>
-        <button onclick="window.location.href='perfiles.html?service=pintura'">
-          Ver Profesionales
-        </button>
-      </div>
-
-      <!-- Tarjeta de servicio para Albañilería -->
-      <div class="service-card">
-        <img
-          src="imges/Albañilería.PNG"
-          alt="Albañilería"
-          class="fotoservicio"
-        />
-        <h4>Albañilería</h4>
-        <p>Trabajo de albañilería para construcción y remodelación.</p>
-        <button
-          onclick="window.location.href='perfiles.html?service=albanileria'"
-        >
-          Ver Profesionales
-        </button>
-      </div>
-
-      <!-- Tarjeta de servicio para Jardinería -->
-      <div class="service-card">
-        <img src="imges/jardineria.PNG" alt="Jardinería" class="fotoservicio" />
-        <h4>Jardinería</h4>
-        <p>Servicios de jardinería y mantenimiento de áreas verdes.</p>
-        <button
-          onclick="window.location.href='perfiles.html?service=jardineria'"
-        >
-          Ver Profesionales
-        </button>
-      </div>
-    </section>
-
-    <footer class="custom-footer">
-      <p>© 2023 Fixing Up. Todos los derechos reservados.</p>
-    </footer>
-
-    <!-- Script de autenticación -->
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/auth.js"></script>
+    <script>
+      // Cambiar entre secciones
+      function navigateTo(sectionId) {
+        const sections = document.querySelectorAll(".menu-section");
+        sections.forEach((section) => (section.style.display = "none"));
+
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) targetSection.style.display = "block";
+      }
+
+      // Renderizar profesionales en la sección Contratar Profesional
+      // Obtener y renderizar los profesionales
+      async function renderProfessionals() {
+        try {
+          const response = await fetch(
+            "http://localhost:3000/api/profesionales"
+          );
+          if (!response.ok) {
+            throw new Error("Error al obtener profesionales");
+          }
+          const { data } = await response.json();
+          const professionalList = document.getElementById("professional-list");
+
+          // Limpiar la lista antes de agregar contenido
+          professionalList.innerHTML = "";
+
+          data.forEach((professional) => {
+            const card = `
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">${professional.nombre}</h5>
+              <p class="card-text">
+                Especialidad: ${professional.especialidad}<br />
+                Tarifa: $${professional.tarifa_hora}/hora<br />
+                Disponibilidad: ${professional.disponibilidad}
+              </p>
+              <button class="btn btn-success w-100">Contratar</button>
+            </div>
+          </div>
+        </div>
+      `;
+            professionalList.insertAdjacentHTML("beforeend", card);
+          });
+        } catch (error) {
+          console.error("Error al renderizar profesionales:", error.message);
+        }
+      }
+
+      // Cargar los profesionales al cargar la página
+      document.addEventListener("DOMContentLoaded", renderProfessionals);
+    </script>
   </body>
 </html>
