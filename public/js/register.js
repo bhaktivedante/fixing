@@ -1,289 +1,221 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector("form");
+  const professionalForm = document.getElementById(
+    "register-professional-form"
+  );
+  const clientForm = document.getElementById("register-client-form");
 
-  // Asignar validaciones en tiempo real para cada campo
-  document.getElementById("name").addEventListener("input", function () {
-    validateName(this.value);
-  });
-
-  document.getElementById("rut").addEventListener("input", function () {
-    validateRut(this.value);
-  });
-
-  document.getElementById("email").addEventListener("input", function () {
-    validateEmail(this.value);
-  });
-
-  document.getElementById("password").addEventListener("input", function () {
-    validatePassword(this.value);
-  });
-
-  document
-    .getElementById("confirm-password")
-    .addEventListener("input", function () {
-      validateConfirmPassword(
-        this.value,
-        document.getElementById("password").value
-      );
+  // Asignar eventos de envío a los formularios
+  if (professionalForm) {
+    professionalForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      await handleProfessionalRegistration();
     });
+  }
 
-  document.getElementById("role").addEventListener("input", function () {
-    validateRole(this.value);
-    toggleProfessionalFields(this.value);
-  });
-
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    // Captura los valores de los campos del formulario
-    const nombre = document.getElementById("name").value.trim();
-    const rut = document.getElementById("rut").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const contraseña = document.getElementById("password").value.trim();
-    const confirmarContraseña = document
-      .getElementById("confirm-password")
-      .value.trim();
-    const rol = document.getElementById("role").value;
-
-    // Campos adicionales para profesionales
-    const especialidad = document.getElementById("especialidad")?.value.trim();
-    const tarifa_hora = document.getElementById("tarifa_hora")?.value.trim();
-    const disponibilidad = document
-      .getElementById("disponibilidad")
-      ?.value.trim();
-
-    // Limpiar mensajes de error previos
-    clearErrors();
-
-    // Validar campos
-    let isValid = true;
-    if (!validateName(nombre)) isValid = false;
-    if (!validateRut(rut)) isValid = false;
-    if (!validateEmail(email)) isValid = false;
-    if (!validatePassword(contraseña)) isValid = false;
-    if (!validateConfirmPassword(confirmarContraseña, contraseña))
-      isValid = false;
-    if (!validateRole(rol)) isValid = false;
-
-    if (rol === "profesional") {
-      if (
-        !validateProfessionalFields(especialidad, tarifa_hora, disponibilidad)
-      ) {
-        isValid = false;
-      }
-    }
-
-    if (isValid) {
-      // Si todo es válido, enviar la solicitud
-      const userData = {
-        nombre,
-        rut,
-        email,
-        contraseña,
-        rol,
-      };
-
-      if (rol === "profesional") {
-        Object.assign(userData, { especialidad, tarifa_hora, disponibilidad });
-      }
-
-      registerUser(userData);
-    }
-  });
+  if (clientForm) {
+    clientForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      await handleClientRegistration();
+    });
+  }
 });
 
-// Función para limpiar mensajes de error
-function clearErrors() {
-  document
-    .querySelectorAll(".error-message")
-    .forEach((el) => (el.textContent = ""));
-}
-
-// Función para registrar usuario en el backend
-async function registerUser(userData) {
-  try {
-    const response = await fetch("/api/usuarios/registrar", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userData),
-    });
-
-    const data = await response.json();
-    if (response.ok) {
-      alert("Registro exitoso. Ahora puedes iniciar sesión.");
-      window.location.href = "login.html";
-    } else {
-      document.getElementById("register-error").innerText = data.error;
-    }
-  } catch (error) {
-    console.error("Error durante el registro:", error);
-    document.getElementById("register-error").innerText =
-      "Ocurrió un error al intentar registrar. Inténtalo de nuevo.";
-  }
-}
-
-document.querySelector("form").addEventListener("submit", function (event) {
-  event.preventDefault();
-
-  const nombre = document.getElementById("name").value.trim();
-  const rut = document.getElementById("rut").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const contraseña = document.getElementById("password").value.trim();
+// Función para manejar el registro de profesionales
+async function handleProfessionalRegistration() {
+  const nombre = document.getElementById("nombre-profesional").value.trim();
+  const rut = document.getElementById("rut-profesional").value.trim();
+  const email = document.getElementById("email-profesional").value.trim();
+  const contraseña = document
+    .getElementById("password-profesional")
+    .value.trim();
   const confirmarContraseña = document
     .getElementById("confirm-password")
     .value.trim();
-  const rol = document.getElementById("role").value;
+  const especialidad = document.getElementById("especialidad").value.trim();
+  const tarifaCotizacion = document
+    .getElementById("tarifa-cotizacion")
+    .value.trim();
 
-  if (rol === "profesional") {
-    const especialidad = document.getElementById("especialidad").value.trim();
-    const tarifa_hora = parseFloat(
-      document.getElementById("tarifa_hora").value
-    );
-    const disponibilidad = document
-      .getElementById("disponibilidad")
-      .value.trim();
+  clearErrors();
 
-    registerUser({
+  // Validaciones
+  if (
+    validateName(nombre, "nombre-profesional") &&
+    validateRut(rut, "rut-profesional") &&
+    validateEmail(email, "email-profesional") &&
+    validatePassword(contraseña, "password-profesional") &&
+    validateConfirmPassword(
+      confirmarContraseña,
+      contraseña,
+      "confirm-password"
+    ) &&
+    validateField(
+      especialidad,
+      "especialidad",
+      "La especialidad es requerida."
+    ) &&
+    validateTarifa(tarifaCotizacion, "tarifa-cotizacion")
+  ) {
+    const userData = {
       nombre,
       rut,
       email,
       contraseña,
-      rol,
+      rol: "profesional",
       especialidad,
-      tarifa_hora,
-      disponibilidad,
-    });
-  } else {
-    registerUser({ nombre, rut, email, contraseña, rol });
-  }
-});
+      tarifa_cotizacion: parseFloat(tarifaCotizacion),
+    };
 
-// Mostrar/ocultar campos adicionales para profesionales
-function toggleProfessionalFields(rol) {
-  const extraFields = document.querySelectorAll(".extra-fields");
-  if (rol === "profesional") {
-    extraFields.forEach((field) => (field.style.display = "block"));
-  } else {
-    extraFields.forEach((field) => (field.style.display = "none"));
+    await registerUser(userData);
   }
 }
 
-// Validación del nombre (mínimo 3 caracteres)
-function validateName(nombre) {
-  if (nombre.length < 3) {
-    document.getElementById("name-error").textContent =
-      "El nombre debe tener al menos 3 caracteres.";
-    return false;
-  } else {
-    document.getElementById("name-error").textContent = "";
-  }
-  return true;
-}
+// Función para manejar el registro de clientes
+async function handleClientRegistration() {
+  const nombre = document.getElementById("nombre-cliente").value.trim();
+  const rut = document.getElementById("rut-cliente").value.trim();
+  const email = document.getElementById("email-cliente").value.trim();
+  const contraseña = document.getElementById("password-cliente").value.trim();
+  const confirmarContraseña = document
+    .getElementById("confirm-password-cliente")
+    .value.trim();
 
-// Validación del RUT (mínimo 8 caracteres, formato correcto)
-function validateRut(rut) {
-  const rutRegex = /^[0-9]{7,8}-[0-9kK]{1}$/;
-  if (!rutRegex.test(rut)) {
-    document.getElementById("rut-error").textContent =
-      "El RUT debe tener el formato 12345678-9 o 12345678-K.";
-    return false;
-  }
-  document.getElementById("rut-error").textContent = "";
-  return true;
-}
+  clearErrors();
 
-// Validación del email (formato simple)
-function validateEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    document.getElementById("email-error").textContent =
-      "El correo electrónico no es válido.";
-    return false;
-  }
-  document.getElementById("email-error").textContent = "";
-  return true;
-}
-
-// Validación de la contraseña (mínimo 6 caracteres)
-function validatePassword(contraseña) {
-  if (contraseña.length < 6) {
-    document.getElementById("password-error").textContent =
-      "La contraseña debe tener al menos 6 caracteres.";
-    return false;
-  }
-  document.getElementById("password-error").textContent = "";
-  return true;
-}
-
-// Validación de la confirmación de contraseña
-function validateConfirmPassword(confirmPassword, password) {
-  if (confirmPassword !== password) {
-    document.getElementById("confirm-password-error").textContent =
-      "Las contraseñas no coinciden.";
-    return false;
-  }
-  document.getElementById("confirm-password-error").textContent = "";
-  return true;
-}
-
-// Validación del rol
-// Validación del rol (debe ser una opción seleccionada válida)
-function validateRole(rol) {
-  const validRoles = ["cliente", "profesional", "administrador"];
-  if (!validRoles.includes(rol)) {
-    document.getElementById("role-error").textContent =
-      "Debes seleccionar un rol válido.";
-    return false;
-  } else {
-    document.getElementById("role-error").textContent = "";
-  }
-  return true;
-}
-
-// Validación de campos adicionales para profesionales
-function validateProfessionalFields() {
-  const especialidad = document.getElementById("specialty");
-  const tarifaHora = document.getElementById("hourly-rate");
-  const disponibilidad = document.getElementById("availability");
-  let isValid = true;
-
-  // Validar especialidad
-  if (!especialidad || especialidad.value.trim() === "") {
-    const errorElement = document.getElementById("specialty-error");
-    if (errorElement) {
-      errorElement.textContent = "La especialidad es requerida.";
-    }
-    isValid = false;
-  } else if (document.getElementById("specialty-error")) {
-    document.getElementById("specialty-error").textContent = "";
-  }
-
-  // Validar tarifa por hora
+  // Validaciones
   if (
-    !tarifaHora ||
-    tarifaHora.value.trim() === "" ||
-    isNaN(tarifaHora.value)
+    validateName(nombre, "nombre-cliente") &&
+    validateRut(rut, "rut-cliente") &&
+    validateEmail(email, "email-cliente") &&
+    validatePassword(contraseña, "password-cliente") &&
+    validateConfirmPassword(
+      confirmarContraseña,
+      contraseña,
+      "confirm-password-cliente"
+    )
   ) {
-    const errorElement = document.getElementById("hourly-rate-error");
-    if (errorElement) {
-      errorElement.textContent =
-        "La tarifa por hora debe ser un número válido.";
-    }
-    isValid = false;
-  } else if (document.getElementById("hourly-rate-error")) {
-    document.getElementById("hourly-rate-error").textContent = "";
-  }
+    const userData = {
+      nombre,
+      rut,
+      email,
+      contraseña,
+      rol: "cliente",
+    };
 
-  // Validar disponibilidad
-  if (!disponibilidad || disponibilidad.value.trim() === "") {
-    const errorElement = document.getElementById("availability-error");
-    if (errorElement) {
-      errorElement.textContent = "La disponibilidad es requerida.";
-    }
-    isValid = false;
-  } else if (document.getElementById("availability-error")) {
-    document.getElementById("availability-error").textContent = "";
+    await registerUser(userData);
   }
+}
 
-  return isValid;
+// Función para registrar el usuario en el backend
+async function registerUser(userData) {
+  try {
+    const response = await fetch("/api/usuarios/registrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert(
+        `Registro exitoso. Tu código de registro es: ${data.codigoRegistro}`
+      );
+      window.location.href = "login.html";
+    } else {
+      alert(data.error || "Error en el registro.");
+    }
+  } catch (error) {
+    console.error("Error al registrar el usuario:", error);
+    alert("Error de conexión. Inténtalo de nuevo.");
+  }
+}
+
+// Función para limpiar mensajes de error previos
+function clearErrors() {
+  document.querySelectorAll(".error-message").forEach((el) => {
+    el.textContent = "";
+  });
+}
+
+// Validación del nombre
+function validateName(value, elementId) {
+  if (value.length < 3) {
+    showError(elementId, "El nombre debe tener al menos 3 caracteres.");
+    return false;
+  }
+  return true;
+}
+
+// Validación del RUT
+function validateRut(value, elementId) {
+  const rutRegex = /^[0-9]{7,8}-[0-9kK]{1}$/;
+  if (!rutRegex.test(value)) {
+    showError(
+      elementId,
+      "El RUT debe tener el formato 12345678-9 o 12345678-K."
+    );
+    return false;
+  }
+  return true;
+}
+
+// Validación del email
+function validateEmail(value, elementId) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(value)) {
+    showError(elementId, "El correo electrónico no es válido.");
+    return false;
+  }
+  return true;
+}
+
+// Validación de la contraseña
+function validatePassword(value, elementId) {
+  if (value.length < 6) {
+    showError(elementId, "La contraseña debe tener al menos 6 caracteres.");
+    return false;
+  }
+  return true;
+}
+
+// Validación de confirmación de contraseña
+function validateConfirmPassword(confirmValue, passwordValue, elementId) {
+  if (confirmValue !== passwordValue) {
+    showError(elementId, "Las contraseñas no coinciden.");
+    return false;
+  }
+  return true;
+}
+
+// Validación de tarifa de cotización
+function validateTarifa(value, elementId) {
+  if (isNaN(value) || parseFloat(value) <= 0) {
+    showError(
+      elementId,
+      "La tarifa de cotización debe ser un número positivo."
+    );
+    return false;
+  }
+  return true;
+}
+
+// Validación de campos genéricos
+function validateField(value, elementId, errorMessage) {
+  if (!value) {
+    showError(elementId, errorMessage);
+    return false;
+  }
+  return true;
+}
+
+// Función para mostrar errores
+function showError(elementId, message) {
+  const inputElement = document.getElementById(elementId);
+  const errorElement = inputElement.nextElementSibling;
+  if (errorElement) {
+    errorElement.textContent = message;
+  }
 }

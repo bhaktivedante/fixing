@@ -1,37 +1,37 @@
 /* Sidebar */
 .sidebar {
   min-width: 250px;
+  background-color: #1e3c72;
 }
 
 .sidebar .nav-link {
   font-size: 1.1rem;
   padding: 10px 15px;
   border-radius: 5px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .sidebar .nav-link:hover {
   background-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(5px);
 }
 
 /* Main Content */
-.menu-section {
-  display: none;
-}
-
 .menu-section h2 {
   font-size: 2rem;
   margin-bottom: 20px;
 }
 
-.menu-section.active {
-  display: block;
-}
-
-/* Tarjetas */
 .card-title {
   font-size: 1.25rem;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.card-title i {
+  font-size: 1.5rem;
+  margin-right: 10px;
 }
 
 .card-text {
@@ -51,13 +51,92 @@
   transform: translateY(-2px);
 }
 
-/* Listas */
-.list-group-item {
-  border: none;
-  padding: 15px;
-  transition: background-color 0.3s;
+/* Animación para las tarjetas */
+.card {
+  transition: transform 0.3s;
 }
 
-.list-group-item:hover {
-  background-color: #f1f1f1;
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Tarjetas de pagos */
+.card {
+  border: none;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 1rem;
+}
+
+.badge {
+  font-size: 0.9rem;
+  padding: 0.5em 0.75em;
+}
+
+/* Tarjetas de profesionales */
+.card {
+  border: none;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.bi-star-fill,
+.bi-star {
+  font-size: 1.2rem;
+}
+
+/* Estilo del acordeón */
+.accordion-button {
+  font-weight: bold;
+}
+
+.accordion-body {
+  font-size: 1rem;
+}
+
+/* Formulario de contacto */
+form .form-control {
+  border-radius: 0.5rem;
+}
+
+form button {
+  background-color: #1e3c72;
+  border: none;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+form button:hover {
+  background-color: #3b5998;
+  transform: translateY(-2px);
 }

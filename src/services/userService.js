@@ -1,7 +1,7 @@
 // src/services/userService.js
 
 const bcrypt = require("bcrypt"); // Importar bcrypt para el manejo de contraseñas
-const userModel = require("../models/userModel");
+const userModel = require("../models/user");
 
 const SALT_ROUNDS = 10; // Número de rondas de sal para el hash
 

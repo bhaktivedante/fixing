@@ -1,7 +1,12 @@
 Inicia sesión con las credenciales:
 
-Email: admin@admin.com
+Email: admin@fixingup.com
 Contraseña: admin123
+
+
+
+sqlite3 database/fixingup.db
+
 
 
 project-root/

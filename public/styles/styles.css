@@ -13,7 +13,7 @@ body {
 
 /* Estilos para el header */
 header {
-  background-color: #1e3c72;
+  background: linear-gradient(90deg, #3b5998, #668aff);
   color: white;
   padding: 15px 20px;
   display: flex;
@@ -95,7 +95,7 @@ nav ul li a:hover {
 }
 
 .hero button:hover {
-  background-color: #3b5998;
+  background: linear-gradient(90deg, #3b5998, #668aff);
 }
 
 /* Estilos para formularios */
@@ -144,7 +144,7 @@ nav ul li a:hover {
 
 button {
   padding: 10px 20px;
-  background-color: #1e3c72;
+  background: linear-gradient(90deg, #3b5998, #668aff);
   color: white;
   border: none;
   cursor: pointer;
@@ -152,7 +152,7 @@ button {
 }
 
 button:hover {
-  background-color: #3b5998;
+  background: linear-gradient(90deg, #3b5998, #668aff);
 }
 
 .error-message {
@@ -202,7 +202,7 @@ button:hover {
 
 .service-card button {
   padding: 10px 20px;
-  background-color: #1e3c72;
+  background: linear-gradient(90deg, #3b5998, #668aff);
   color: white;
   border: none;
   border-radius: 5px;
@@ -210,7 +210,7 @@ button:hover {
 }
 
 .service-card button:hover {
-  background-color: #3b5998;
+  background: linear-gradient(90deg, #3b5998, #668aff);
 }
 
 /* Estilos para la sección de perfiles de profesionales */
@@ -254,7 +254,7 @@ button:hover {
 
 .profile-card button {
   padding: 10px 20px;
-  background-color: #1e3c72;
+  background: linear-gradient(90deg, #3b5998, #668aff);
   color: white;
   border: none;
   border-radius: 5px;
@@ -262,12 +262,12 @@ button:hover {
 }
 
 .profile-card button:hover {
-  background-color: #3b5998;
+  background: linear-gradient(90deg, #3b5998, #668aff);
 }
 
 /* Estilos para el footer */
 footer {
-  background-color: #1e3c72;
+  background: linear-gradient(90deg, #3b5998, #668aff);
   color: white;
   padding: 20px;
   text-align: center;
@@ -333,7 +333,7 @@ footer a:hover {
 
 .recover-container button {
   padding: 10px 20px;
-  background-color: #1e3c72;
+  background: linear-gradient(90deg, #3b5998, #668aff);
   color: white;
   border: none;
   cursor: pointer;
@@ -341,12 +341,16 @@ footer a:hover {
 }
 
 .recover-container button:hover {
-  background-color: #3b5998;
+  background: linear-gradient(90deg, #3b5998, #668aff);
 }
 
 /* Footer personalizado */
 .custom-footer {
-  background-color: #071e70; /* Color de fondo similar al de la imagen */
+  background: linear-gradient(
+    90deg,
+    #3b5998,
+    #668aff
+  ); /* Color de fondo similar al de la imagen */
   color: #ffffff;
   padding: 20px 0;
   text-align: center;
@@ -453,7 +457,11 @@ button {
   background-color: #f2f2f2; /* Fondo gris claro para destacar la sección */
   padding: 50px 20px;
   text-align: center;
-  border-top: 3px solid #3b5998; /* Línea superior con color de marca */
+  background: linear-gradient(
+    90deg,
+    #3b5998,
+    #668aff
+  ); /* Línea superior con color de marca */
 }
 
 .about-us h3 {
@@ -497,7 +505,7 @@ button {
 }
 
 .about-text button {
-  background-color: #3b5998; /* Azul para botones */
+  background: linear-gradient(90deg, #3b5998, #668aff);
   color: #fff; /* Texto blanco */
   border: none;
   padding: 10px 20px;

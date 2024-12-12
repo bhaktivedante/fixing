@@ -1,31 +1,24 @@
-// src/app.js
+require("dotenv").config(); // Cargar variables de entorno
 
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-require("dotenv").config();
+const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
-// Middleware para permitir CORS y parsear JSON
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Configuración de archivos estáticos
+// Archivos estáticos
 app.use(express.static(path.join(__dirname, "../public")));
 
-// Importar rutas de la API
-const userRoutes = require("./routes/usuarios");
-const professionalRoutes = require("./routes/profesionales");
+// Rutas
+app.use(userRoutes);
 
-// Enlazar rutas de la API con el prefijo /api/usuarios
-app.use("/api/usuarios", userRoutes);
-
-// Enlazar rutas de la API con el prefijo /api/profesionales
-app.use("/api/profesionales", professionalRoutes);
-
-// Middleware de manejo de errores para rutas no encontradas
-app.use((req, res, next) => {
+// Middleware para rutas no encontradas
+app.use((req, res) => {
   res.status(404).json({ error: "Ruta no encontrada" });
 });
 

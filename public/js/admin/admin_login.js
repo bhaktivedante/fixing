@@ -1,6 +1,6 @@
 // Función para manejar el login de administrador
 async function adminLogin(event) {
-  event.preventDefault(); // Prevenir la recarga del formulario
+  event.preventDefault();
 
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
@@ -17,8 +17,8 @@ async function adminLogin(event) {
   }
 
   try {
-    // Petición al servidor
-    const response = await fetch("/api/usuarios/login", {
+    // Petición al servidor para el login del administrador
+    const response = await fetch("/api/admin/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -27,30 +27,20 @@ async function adminLogin(event) {
     const data = await response.json();
 
     if (response.ok) {
-      // Decodificar el token y verificar el rol
+      // Almacenar el token JWT en localStorage
       const token = data.token;
-      const decodedToken = parseJwt(token);
+      localStorage.setItem("token", token);
 
-      console.log("Token decodificado:", decodedToken); // Log para depuración
-
-      if (decodedToken.rol === "administrador") {
-        // Ajuste aquí
-        // Guardar el token en localStorage
-        localStorage.setItem("token", token);
-
-        // Redirigir al panel de administración
-        alert("Inicio de sesión exitoso");
-        window.location.href = "admin.html";
-      } else {
-        errorMessage.innerText =
-          "No tienes permisos para acceder al panel de administración.";
-        errorMessage.style.display = "block";
-      }
+      // Mensaje de éxito y redirección
+      alert("Inicio de sesión de administrador exitoso");
+      window.location.href = "admin.html";
     } else {
+      // Mostrar mensaje de error del servidor
       errorMessage.innerText = data.error || "Credenciales incorrectas.";
       errorMessage.style.display = "block";
     }
   } catch (error) {
+    // Manejar errores de conexión
     console.error("Error al iniciar sesión:", error);
     errorMessage.innerText = "Error en el servidor. Inténtalo de nuevo.";
     errorMessage.style.display = "block";
@@ -70,7 +60,7 @@ function parseJwt(token) {
     );
     return JSON.parse(jsonPayload);
   } catch (e) {
-    console.error("Error al decodificar el token:", e); // Log en caso de error
+    console.error("Error al decodificar el token:", e);
     return null;
   }
 }
@@ -78,5 +68,9 @@ function parseJwt(token) {
 // Evento para ejecutar la función al cargar
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.querySelector("form");
-  loginForm.addEventListener("submit", adminLogin);
+  if (loginForm) {
+    loginForm.addEventListener("submit", adminLogin);
+  } else {
+    console.error("Formulario de login no encontrado.");
+  }
 });

@@ -1,4 +1,5 @@
-// Configuración base para la API
+// api.js
+
 const API_BASE_URL = "http://localhost:3000/api";
 
 // Función genérica para manejar errores de respuesta
@@ -20,6 +21,7 @@ async function registerUser(data) {
     });
     const responseData = await handleResponse(response);
     alert(responseData.message || "Usuario registrado con éxito");
+    window.location.href = "login.html"; // Redirigir al login después del registro
   } catch (error) {
     console.error("Error al registrar usuario:", error.message);
     alert(`Error: ${error.message}`);
@@ -30,9 +32,7 @@ async function registerUser(data) {
 async function getUsers() {
   try {
     const response = await fetch(`${API_BASE_URL}/usuarios`);
-    const data = await handleResponse(response);
-    console.log("Usuarios obtenidos:", data);
-    return data;
+    return await handleResponse(response);
   } catch (error) {
     console.error("Error al obtener usuarios:", error.message);
   }
@@ -42,9 +42,7 @@ async function getUsers() {
 async function getProfessionals() {
   try {
     const response = await fetch(`${API_BASE_URL}/profesionales`);
-    const data = await handleResponse(response);
-    console.log("Profesionales obtenidos:", data);
-    return data.data; // Devuelve la lista de profesionales
+    return await handleResponse(response);
   } catch (error) {
     console.error("Error al obtener profesionales:", error.message);
     alert(`Error: ${error.message}`);
@@ -77,9 +75,7 @@ async function getContracts(clientId) {
     const response = await fetch(
       `${API_BASE_URL}/contratos?clienteId=${clientId}`
     );
-    const data = await handleResponse(response);
-    console.log("Contratos obtenidos:", data);
-    return data;
+    return await handleResponse(response);
   } catch (error) {
     console.error("Error al obtener contratos:", error.message);
   }
@@ -89,9 +85,7 @@ async function getContracts(clientId) {
 async function getPaymentHistory(clientId) {
   try {
     const response = await fetch(`${API_BASE_URL}/pagos?clienteId=${clientId}`);
-    const data = await handleResponse(response);
-    console.log("Historial de pagos obtenido:", data);
-    return data;
+    return await handleResponse(response);
   } catch (error) {
     console.error("Error al obtener historial de pagos:", error.message);
   }

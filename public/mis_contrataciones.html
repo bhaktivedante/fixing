@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fixing Up - Mis Contrataciones</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/menu_cliente.css" />
+  </head>
+  <body>
+    <div class="d-flex">
+      <div id="sidebar-container"></div>
+
+      <main class="flex-grow-1 p-4">
+        <h2 class="mb-4">
+          <i class="bi bi-file-earmark-text me-2"></i>Mis Contrataciones
+        </h2>
+        <p class="text-muted">
+          Aquí puedes ver y gestionar todas tus contrataciones.
+        </p>
+
+        <!-- Tabla de Contrataciones -->
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead class="table-primary">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Profesional</th>
+                <th scope="col">Servicio</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>María López</td>
+                <td>Reparación Eléctrica</td>
+                <td>2024-06-15</td>
+                <td>
+                  <span class="badge bg-warning text-dark">En Progreso</span>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Carlos Pérez</td>
+                <td>Instalación de Fontanería</td>
+                <td>2024-05-20</td>
+                <td><span class="badge bg-success">Completado</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Cargar el sidebar dinámicamente
+      fetch("sidebar_cliente.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("sidebar-container").innerHTML = data;
+        });
+
+      function logoutFunction() {
+        alert("Sesión cerrada");
+      }
+    </script>
+  </body>
+</html>

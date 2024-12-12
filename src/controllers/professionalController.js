@@ -1,4 +1,4 @@
-const db = require("../config/database"); // Asegúrate de no declarar `db` nuevamente
+const db = require("../config/db"); // Asegúrate de no declarar `db` nuevamente
 
 // Controlador para obtener todos los profesionales
 exports.getAllProfessionals = (req, res) => {

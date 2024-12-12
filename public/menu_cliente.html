@@ -14,121 +14,31 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
       rel="stylesheet"
     />
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="styles/menu_cliente.css" />
   </head>
   <body>
     <div class="d-flex">
-      <!-- Sidebar -->
-      <nav class="bg-primary text-white p-3 vh-100 sidebar">
-        <h4 class="text-center mb-4">Fixing Up</h4>
-        <ul class="nav flex-column">
-          <li class="nav-item mb-3">
-            <a href="#dashboard" class="nav-link text-white">
-              <i class="bi bi-house-door"></i> Inicio
-            </a>
-          </li>
-          <li class="nav-item mb-3">
-            <a href="#my-contracts" class="nav-link text-white">
-              <i class="bi bi-file-earmark-text"></i> Mis Contrataciones
-            </a>
-          </li>
-          <li class="nav-item mb-3">
-            <a href="#payments" class="nav-link text-white">
-              <i class="bi bi-wallet2"></i> Mis Pagos
-            </a>
-          </li>
-          <li class="nav-item mb-3">
-            <a href="#hire-professional" class="nav-link text-white">
-              <i class="bi bi-person-plus"></i> Contratar Profesional
-            </a>
-          </li>
-          <li class="nav-item mb-3">
-            <a href="#help-center" class="nav-link text-white">
-              <i class="bi bi-question-circle"></i> Centro de Ayuda
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link text-white" onclick="logoutFunction()">
-              <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <div id="sidebar-container"></div>
 
-      <!-- Main Content -->
       <main class="flex-grow-1 p-4">
-        <!-- Inicio -->
-        <section id="dashboard" class="menu-section">
-          <h2>¡Bienvenido al Dashboard!</h2>
-          <p class="text-muted">Gestiona tus contrataciones, pagos y más.</p>
-        </section>
-
-        <!-- Sección Contratar Profesional -->
-        <section id="hire-professional" class="menu-section mt-5">
-          <h2>Contratar Profesional</h2>
-          <p>Elige entre los mejores profesionales para tus necesidades.</p>
-          <div class="row" id="professional-list">
-            <!-- Lista dinámica de profesionales -->
-          </div>
-        </section>
+        <h2>¡Bienvenido al Dashboard!</h2>
+        <p class="text-muted">Gestiona tus contrataciones, pagos y más.</p>
       </main>
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/auth.js"></script>
     <script>
-      // Cambiar entre secciones
-      function navigateTo(sectionId) {
-        const sections = document.querySelectorAll(".menu-section");
-        sections.forEach((section) => (section.style.display = "none"));
+      // Cargar el sidebar dinámicamente
+      fetch("sidebar_cliente.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("sidebar-container").innerHTML = data;
+        });
 
-        const targetSection = document.getElementById(sectionId);
-        if (targetSection) targetSection.style.display = "block";
+      function logoutFunction() {
+        alert("Sesión cerrada");
       }
-
-      // Renderizar profesionales en la sección Contratar Profesional
-      // Obtener y renderizar los profesionales
-      async function renderProfessionals() {
-        try {
-          const response = await fetch(
-            "http://localhost:3000/api/profesionales"
-          );
-          if (!response.ok) {
-            throw new Error("Error al obtener profesionales");
-          }
-          const { data } = await response.json();
-          const professionalList = document.getElementById("professional-list");
-
-          // Limpiar la lista antes de agregar contenido
-          professionalList.innerHTML = "";
-
-          data.forEach((professional) => {
-            const card = `
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">${professional.nombre}</h5>
-              <p class="card-text">
-                Especialidad: ${professional.especialidad}<br />
-                Tarifa: $${professional.tarifa_hora}/hora<br />
-                Disponibilidad: ${professional.disponibilidad}
-              </p>
-              <button class="btn btn-success w-100">Contratar</button>
-            </div>
-          </div>
-        </div>
-      `;
-            professionalList.insertAdjacentHTML("beforeend", card);
-          });
-        } catch (error) {
-          console.error("Error al renderizar profesionales:", error.message);
-        }
-      }
-
-      // Cargar los profesionales al cargar la página
-      document.addEventListener("DOMContentLoaded", renderProfessionals);
     </script>
   </body>
 </html>
